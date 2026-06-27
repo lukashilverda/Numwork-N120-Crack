@@ -25,12 +25,12 @@ First if you have any scripts or values don't forget to save it in your computer
 Next open the numwork, be carefull and unplug the battery.
 
 ## Go into boot0 mode
-## (WIP, please wait)
+Use the guide on https://www-fourier.univ-grenoble-alpes.fr/~parisse/numworks/khicasnw.html to unlock the N0120. Next, you can upload a new bootlaoder with ST-Link software or OpenOCD, or the [Webdfu](https://ti-planet.github.io/webdfu_numworks/n0110/).
 Connect the numwork to the pc.
 Connect the pin 3.3v to boot0 (seen in the image) then click reset on the calculator (put the black part to click on it). If the light turn red then it's ok, else if the led turn green that mean that your calculator is locked, skip this step:
 
 ## Flash the custom bootloader (unlocked)
-Download the bootloader in **Release** Section.
+Download the bootloader in **Release** Section. This is a precompiled .bin file that when uploaded makes the led go rainbow.
 Go to [Webdfu](https://ti-planet.github.io/webdfu_numworks/n0110/), select the `internal.bin` file and click `Flash Internal`.
 
 ## Your calculator is locked
