@@ -1,45 +1,156 @@
-# N120-Crack
-In this repository there is all the source code i've made (bootloader) and used to crack the numwork n120.
-If someone wanna help me cracking the n120 (if you're french it's even better because i'm french) send me a request on discord "dotmazy".
+# N0120 (N120) Bootloader Unlock & Custom Firmware  
 
-# Informations
-- Here is the pcb of the N120 (it's not the official pcb so there could be some errors but it's mainly that): https://pro.easyeda.com/editor#id=6ccc4bf0c31b4ff1b9705d23d34b74a4
-- Processor: STM32H725VET6
-- Screen: (waiting for information)
+> **⚠️ WORK IN PROGRESS — DO NOT FOLLOW THESE INSTRUCTIONS YET**  
+> This guide is still being developed and tested. Following it blindly **may permanently brick your calculator**.  
+> Proceed only if you fully understand the risks and are prepared to recover using external hardware (ST-Link).
 
-# DO NOT FOLLOW THIS TUTORIAL, IT'S WORK IN PROGRESS
+---
 
-# Here is the step to crack the N120
+## What is this?
 
-## Needed
+This repository contains everything related to unlocking the NumWorks N0120 (also referred to as N120) and running custom firmware on it.  
+It includes:
 
-Here is all the things you'll need:
-- a st link (not needed if your calculator isn't locked)
-- a numwork N120 (look at the back of your calculator)
-- 1/3 cables
-- a screw driver
+- A **custom bootloader** (source code provided)  
+- Hardware documentation (unofficial PCB, chip datasheets)  
+- A step‑by‑step unlocking procedure (work in progress)
 
-## Open the numwork
+The bootloader is a proof‑of‑concept: once flashed, the calculator’s LED cycles through rainbow colours instead of the normal green/red behaviour.
 
-First if you have any scripts or values don't forget to save it in your computer.
-Next open the numwork, be carefull and unplug the battery.
+**If you’d like to contribute** (especially if you speak Dutch, but English will also work), please reach out on Discord: **`LukasH`**. Or join the [Omega Discord Server](https://discord.gg/KMWPR4MJrq)
 
-## Go into boot0 mode
-Use the guide on https://www-fourier.univ-grenoble-alpes.fr/~parisse/numworks/khicasnw.html to unlock the N0120. Next, you can upload a new bootlaoder with ST-Link software or OpenOCD, or the [Webdfu](https://ti-planet.github.io/webdfu_numworks/n0110/).
-Connect the numwork to the pc.
-Connect the pin 3.3v to boot0 (seen in the image) then click reset on the calculator (put the black part to click on it). If the light turn red then it's ok, else if the led turn green that mean that your calculator is locked, skip this step:
+---
 
-## Flash the custom bootloader (unlocked)
-Download the bootloader in **Release** Section. This is a precompiled .bin file that when uploaded makes the led go rainbow.
-Go to [Webdfu](https://ti-planet.github.io/webdfu_numworks/n0110/), select the `internal.bin` file and click `Flash Internal`.
+## Hardware Information
 
-## Your calculator is locked
-If there is an error don't panic it's just that your numwork is locked (like the n110 in some cases), to unlock it you will need to buy an st link or a raspberry pi that you can use as an st link. I'll show you how to do it directly with an st link (here is one that you can take [from aliexpress](https://fr.aliexpress.com/item/1005005273159580.html?src=google&pdp_npi=4%40dis!EUR!2.31!2.31!!!!!%40!12000032440955298!ppc!!!&src=google&albch=shopping&acnt=248-630-5778&isdl=y&slnk=&plac=&mtctp=&albbt=Google_7_shopping&aff_platform=google&aff_short_key=UneMJZVf&gclsrc=aw.ds&&albagn=888888&&ds_e_adid=&ds_e_matchtype=&ds_e_device=m&ds_e_network=x&ds_e_product_group_id=&ds_e_product_id=fr1005005273159580&ds_e_product_merchant_id=559096839&ds_e_product_country=FR&ds_e_product_language=fr&ds_e_product_channel=online&ds_e_product_store_id=&ds_url_v=2&albcp=20180143335&albag=&isSmbAutoCall=false&needSmbHouyi=false&gad_source=1&gclid=CjwKCAiAtNK8BhBBEiwA8wVt98MMo_ckNx27aYHsyJgSvaeyl5_o8L3p0y5lY9wqSC2Fe72sFBr3OBoCVFcQAvD_BwE)).
-On the st link you can see the pins, just connect three cables: one on swclk, one on swdio and one on gnd. Connect gnd to the gnd of the calculator (just put it on top of the usb c port), swdclk to swclk on the bottom left pins and swdio to swdio (bottom left pins are on the image bellow)
+- **Model:** NumWorks N0120 (marketed as N120)  
+- **Unofficial PCB reference:** [View on EasyEDA](https://pro.easyeda.com/editor#id=6ccc4bf0c31b4ff1b9705d23d34b74a4) *(may contain errors, use at your own risk)*  
 
-When you have done that connect the numwork to your pc, on your pc install [STM32 Cube Programmer](https://www.st.com/en/development-tools/stm32cubeprog.html) and launch it, select st link on the right if it's not already selected then click on connect (verify that the pins between the numwork and the st link are connected well) then go in OB on the right, then extends Read Out Protection there should be CC, set it to AA and also go down to Write Protection and turn everything on (it will turn of the write protection). Then you can either go back to Webdfu or use STM32CubeProgrammer to flash the bootloader.
+| Component         | Specification                                                                 |
+|-------------------|-------------------------------------------------------------------------------|
+| **MCU**           | STM32H725VET6, ARM Cortex‑M7 @ 550 MHz, LQFP‑100 package                      |
+| **RAM**           | 564 KB internal                                                               |
+| **Storage**       | 512 KB on‑chip Flash + 8 MB external Quad‑SPI Flash                           |
+| **Display**       | 2.8" (7.1 cm) 320×240 pixel, 16‑bit colour, 140 PPI, ST7789V controller       |
+| **Battery**       | 1450 mAh Li‑Po                                                                |
 
-##Done
-If you're here the bootloader is flashed and you're numwork n120 has been cracked :), yes it's finaly possible.
+**Datasheets:**  
+- [STM32H725AE](https://www.st.com/resource/en/datasheet/stm32h725ae.pdf)  
+- [ST7789V display controller](https://newhavendisplay.com/content/datasheets/ST7789V.pdf)
 
-Then just go and install a custom firmware like omega or upsilon (note: idk if it will work).
+---
+
+## Prerequisites
+
+- A **NumWorks N0120** calculator (check the model on the back sticker)  
+- **ST‑Link V2** or compatible debug probe (only needed if the calculator is “locked”)  
+- **USB‑C cable** (data capable)  
+- A **small Phillips screwdriver** to open the case  
+- Software tools (see below)
+
+---
+
+## Step‑by‑Step Unlock (EXPERIMENTAL)
+
+> **Important:**  
+> Before you begin, back up any scripts, data, or settings from your calculator using the official NumWorks web interface. Opening the device will disconnect the battery and erase all unsaved data.
+
+### 1. Open the calculator
+
+Carefully remove the back cover and **unplug the battery**.  
+*You can find teardown guides online — the N0120 is very similar to earlier models.*
+
+### 2. Enter BOOT0 mode (for unlocked calculators)
+
+- Keep the battery disconnected.  
+- Connect the calculator to your PC via USB‑C.  
+- Use a wire to **short the BOOT0 pin to 3.3 V** (refer to the image below / in the repo).  
+- While holding the short, **press and release the RESET button**.  
+- **LED turns red** → BOOT0 mode successfully entered.  
+- **LED stays green** → your calculator is locked; proceed to section [5. Unlocking a locked calculator](#5-unlocking-a-locked-calculator).
+
+![BOOT0 pin location placeholder – insert actual image](link/to/boot0_image.png)
+
+### 3. Flash the custom bootloader (unlocked only)
+
+1. Go to the **Releases** section of this repository and download the precompiled `internal.bin` bootloader.  
+2. Visit the [WebDFU tool](https://ti-planet.github.io/webdfu_numworks/n0110/) (originally made for N0110, may work with N0120).  
+3. Click **“Flash Internal”** and select the downloaded `internal.bin`.  
+4. Wait for the process to finish.  
+5. Unplug the USB cable, reconnect the battery, and power on.  
+   - **If successful:** the LED will cycle through a rainbow pattern.  
+   - **If the calculator resets normally:** the flash did not work, or your device is locked.
+
+---
+
+## 5. Unlocking a locked calculator
+
+If your N0120 is locked, the internal Flash is protected and cannot be written over USB. You’ll need an **ST‑Link** debug probe.
+
+### Required hardware
+
+- An ST‑Link V2 (e.g. [this one from AliExpress](https://fr.aliexpress.com/item/1005005273159580.html) or any official clone)  
+- Three female‑to‑female jumper wires
+
+### Wiring
+
+| ST‑Link pin | Calculator PCB test point |
+|-------------|----------------------------|
+| SWCLK      | SWCLK (bottom‑left header) |
+| SWDIO      | SWDIO (bottom‑left header) |
+| GND        | GND (e.g. USB‑C shield)    |
+
+*Refer to the image below for the exact test point locations.*
+
+![ST-Link wiring placeholder](link/to/wiring_image.png)
+
+### Software: STM32CubeProgrammer
+
+1. Download and install [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html).  
+2. Connect the ST‑Link to your PC and to the calculator (battery **disconnected**, USB‑C also **disconnected** from PC).  
+3. Launch STM32CubeProgrammer, select **ST‑Link** as the interface, and click **Connect**.  
+4. Once connected, go to the **“OB” (Option Bytes)** tab.  
+   - **Read Out Protection:** change from `CC` (Level 1) to **`AA`** (Level 0 – no protection).  
+   - **Write Protection:** disable **all** sectors (uncheck or set to “No protection”).  
+5. Click **Apply**. The chip will be mass‑erased and unlocked.  
+6. **Disconnect** the ST‑Link and remove the wires.
+
+After this procedure, the calculator behaves like an unlocked device. You can now:
+
+- Go back to [Step 2](#2-enter-boot0-mode-for-unlocked-calculators) and flash the custom bootloader via WebDFU, **or**  
+- Directly flash the bootloader `.bin` using STM32CubeProgrammer (select **Download** → choose the file → start).
+
+---
+
+## 6. After flashing the bootloader
+
+Your N0120 now has a custom bootloader installed!  
+
+**Next steps (at your own risk):**
+
+- Try installing a custom firmware like **Omega** or **Upsilon**.  
+  *Note: I have not confirmed whether these images work directly on the N0120; you may need to build them specifically for the H725 target.*  
+- Develop your own firmware or tools. The source code in this repo is a good starting point.
+
+---
+
+## Troubleshooting & Community
+
+- Double‑check all connections — loose wires are the most common problem.  
+- If WebDFU fails, try a different browser (Chromium‑based works best) or use STM32CubeProgrammer directly.  
+- Need help? Join the discussion or contact me on Discord: **`dotmazy`**  
+  *French speakers are particularly welcome!*
+
+---
+
+## Disclaimer
+
+This project is **not affiliated with NumWorks** in any way.  
+Modifying your calculator’s bootloader **voids the warranty** and can permanently damage the device.  
+All information is provided for educational and research purposes only. **Use at your own risk.**
+
+---
+
+## License
+
+*(Add a license here — e.g., MIT, GPL, or “All rights reserved”)*
