@@ -9,7 +9,7 @@ If someone wanna help me cracking the n120 (if you're french it's even better be
 
 # DO NOT FOLLOW THIS TUTORIAL, IT'S WORK IN PROGRESS
 
-# Here is the step to crack the n120 (WIP)
+# Here is the step to crack the N120
 
 ## Needed
 
