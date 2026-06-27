@@ -69,7 +69,7 @@ Carefully remove the back cover and **unplug the battery**.
 - **LED turns red** → BOOT0 mode successfully entered.  
 - **LED stays green** → your calculator is locked; proceed to section [5. Unlocking a locked calculator](#5-unlocking-a-locked-calculator).
 
-![BOOT0 pin location placeholder – insert actual image](link/to/boot0_image.png)
+![BOOT0 pin location, 3.3v is labeled (upper left corner)](images/boot0.jpg)
 
 ### 3. Flash the custom bootloader (unlocked only)
 
