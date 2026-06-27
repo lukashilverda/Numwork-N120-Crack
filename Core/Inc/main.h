@@ -69,7 +69,7 @@ void Error_Handler(void);
 
 /* Private defines -----------------------------------------------------------*/
 #define LCD_RESET_Pin GPIO_PIN_5
-#define LCD_RESET_GPIO_Port GPIOE
+#define LCD_RESET_GPIO_Port GPIOE    //LCD RESET Pin
 #define KBD_COL_1_Pin GPIO_PIN_1
 #define KBD_COL_1_GPIO_Port GPIOC
 #define KBD_ROW_B_Pin GPIO_PIN_0
