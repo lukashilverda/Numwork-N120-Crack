@@ -209,7 +209,7 @@ int main(void)
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
 
-  /*setLedColor((Color){255, 255, 0});
+  /*setLedColor((Color){255, 255, 0}); */
   HAL_Delay(250);
   setLedColor((Color){0, 0, 0});
   HAL_Delay(250);
