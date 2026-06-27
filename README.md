@@ -23,7 +23,7 @@ The bootloader is a proof‑of‑concept: once flashed, the calculator’s LED c
 
 ## Hardware Information
 
-- **Model:** NumWorks N0120 (marketed as N120)  
+- **Model:** NumWorks N0120 
 - **Unofficial PCB reference:** [View on EasyEDA](https://pro.easyeda.com/editor#id=6ccc4bf0c31b4ff1b9705d23d34b74a4) *(may contain errors, use at your own risk)*  
 
 | Component         | Specification                                                                 |
@@ -138,8 +138,8 @@ Your N0120 now has a custom bootloader installed!
 
 - Double‑check all connections — loose wires are the most common problem.  
 - If WebDFU fails, try a different browser (Chromium‑based works best) or use STM32CubeProgrammer directly.  
-- Need help? Join the discussion or contact me on Discord: **`dotmazy`**  
-  *French speakers are particularly welcome!*
+- Need help? Join the discussion or contact me on Discord: **`LukasH`**  
+
 
 ---
 
@@ -153,4 +153,4 @@ All information is provided for educational and research purposes only. **Use at
 
 ## License
 
-*(Add a license here — e.g., MIT, GPL, or “All rights reserved”)*
+*All rights reserved*
