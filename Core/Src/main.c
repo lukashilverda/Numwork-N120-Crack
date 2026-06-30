@@ -134,9 +134,14 @@ int main(void)
   HAL_Delay(250);
 
   
-  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_5, 1); //Reset the LCD
-  HAL_Delay(10000);
   EnableQuadSPI(); //Enable QuadSPI to read the flash
+
+  // Initialise the ST7789V display (handles its own reset + backlight)
+  LCD_Init();
+
+  // Test: fill screen blue so we know the LCD is working
+  LCD_FillScreen(RGB565(0, 0, 255));
+  LCD_DrawString(10, 10, "NumWorks N0120", RGB565(255, 255, 255), RGB565(0, 0, 255));
 
   //Flash the led green 2 times to indicate that the program has started:
   setLedColor((Color){0, 255, 0});
