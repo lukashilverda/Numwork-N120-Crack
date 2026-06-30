@@ -12,7 +12,7 @@ This repository contains everything related to unlocking the NumWorks N0120 (als
 It includes:
 
 - A **custom bootloader** (source code provided)  
-- Hardware documentation (unofficial PCB, chip datasheets)  
+- Hardware documentation (chip datasheets)  
 - A step‑by‑step unlocking procedure (work in progress)
 
 The bootloader is a proof‑of‑concept: once flashed, the calculator’s LED cycles through rainbow colours instead of the normal green/red behaviour.
@@ -24,7 +24,6 @@ The bootloader is a proof‑of‑concept: once flashed, the calculator’s LED c
 ## Hardware Information
 
 - **Model:** NumWorks N0120 
-- **Unofficial PCB reference:** [View on EasyEDA](https://pro.easyeda.com/editor#id=6ccc4bf0c31b4ff1b9705d23d34b74a4) *(may contain errors, use at your own risk)*  
 
 | Component         | Specification                                                                 |
 |-------------------|-------------------------------------------------------------------------------|
