@@ -1,0 +1,9 @@
+.vscode/
+.idea/
+*.swp
+*~
+
+
+# Specific to exclude st7789-main
+st7789-main/
+
